@@ -1,10 +1,12 @@
 class Person {
   // Private content can't change/access it with dot notation. # prevents double naming
+  #id
   #name;
   #age;
   #classification;
 
-  constructor(name, age) {
+  constructor(name, age, id) {
+    this.#id = id;
     this.#age = age;
     this.#name = name;
 
@@ -12,6 +14,10 @@ class Person {
     else if (age >= 13 && age <= 19) this.#classification = "Adolescente";
     else if (age >= 20 && age <= 65) this.#classification = "Adulto";
     else this.#classification = "Criança";
+  }
+
+  get getId() {
+    return this.#id;
   }
 
   get getName() {

@@ -6,36 +6,118 @@ class List {
   }
 
   addPerson(person) {
-    if (person) this.#list.push(person);
-    else
+    if (person) {
+      const nameValidation = validateName(person.name);
+      const ageValidation = validateAge(person.age);
+
+      if (nameValidation.isValid && ageValidation.isValid) {
+        this.#list.push(
+          new Person(person.name, person.age, this.#list.length + 1)
+        );
+        return { error: false };
+      } else {
+        return {
+          nameError: nameValidation.error,
+          ageError: ageValidation.error,
+        };
+      }
+    } else {
       throw new Error(
         "Must send a Person Object when callind addPerson method!"
       );
+    }
   }
 
   get getList() {
-    return this.#list;
+    return [...this.#list];
   }
 
-  removePerson(index) {
-    // splice
+  removePerson(id) {
+    const index = this.#list.findIndex((person) => person.getId === id);
+    this.#list.splice(index, 1);
   }
 
-  sortByName() {}
+  sortByName(orientation) {
+    if (orientation === "as") {
+      return [...this.#list].sort((p1, p2) => {
+        if (p1.getName.toLowerCase() > p2.getName.toLowerCase()) {
+          return 1;
+        } else if (p1.getName.toLowerCase() < p2.getName.toLowerCase()) {
+          return -1;
+        } else {
+          // Names are the same
+          if (p1.getAge > p2.getAge) {
+            return 1;
+          } else if (p1.getAge < p2.getAge) {
+            return -1;
+          } else {
+            // Same name same age
+            return 0;
+          }
+        }
+      });
+    } else {
+      return [...this.#list].sort((p1, p2) => {
+        if (p1.getName.toLowerCase() < p2.getName.toLowerCase()) {
+          return 1;
+        } else if (p1.getName.toLowerCase() > p2.getName.toLowerCase()) {
+          return -1;
+        } else {
+          // Names are the same
+          if (p1.getAge > p2.getAge) {
+            return 1;
+          } else if (p1.getAge < p2.getAge) {
+            return -1;
+          } else {
+            // Same name same age
+            return 0;
+          }
+        }
+      });
+    }
+  }
 
-  sortByAge() {}
-
-  // Se der tempo
-  editPerson(newData) {
-    // create setter in Person class
+  sortByAge(orientation) {
+    if (orientation === "as") {
+      return [...this.#list].sort((p1, p2) => {
+        if (p1.getAge > p2.getAge) {
+          return 1;
+        } else if (p1.getAge < p2.getAge) {
+          return -1;
+        } else {
+          // Ages are the same
+          if (p1.getName.toLowerCase() > p2.getName.toLowerCase()) {
+            return 1;
+          } else if (p1.getName.toLowerCase() < p2.getName.toLowerCase()) {
+            return -1;
+          } else {
+            // Same name same age
+            return 0;
+          }
+        }
+      });
+    } else {
+      return [...this.#list].sort((p1, p2) => {
+        if (p1.getAge < p2.getAge) {
+          return 1;
+        } else if (p1.getAge > p2.getAge) {
+          return -1;
+        } else {
+          // Ages are the same
+          if (p1.getName.toLowerCase() > p2.getName.toLowerCase()) {
+            return 1;
+          } else if (p1.getName.toLowerCase() < p2.getName.toLowerCase()) {
+            return -1;
+          } else {
+            // Same name same age
+            return 0;
+          }
+        }
+      });
+    }
   }
 
   getTotal() {
     return this.#list.length;
   }
 }
-
-/**
- * when clicking sort button, call the sort method => pass to render list function the new list and re render it
- * same idea when adding, removing, etc
- */

@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/list.css">
     <title>E-Core Challenge</title>
   </head>
   <body>
@@ -14,18 +17,38 @@
       <div class="App-Content">
         <section class="Form-Content">
           <!-- Form to add someone new -->
+          <form id="person-form">
+            <fieldset>
+              <legend>Person Information</legend>
+              <p class="form-section-row1 name-input">
+                <label for="person-name">Name</label>
+                <input type="text" name="name" id="person-name" />
+              </p>
+              <p class="form-section-row1 age-input">
+                <label for="person-age">Age</label>
+                <input
+                  type="number"
+                  value="0"
+                  aria-valuemin="0"
+                  name="age"
+                  id="person-age"
+                />
+              </p>
+            </fieldset>
+            <button type="submit">Submit Person</button>
+          </form>
         </section>
         <section class="List-Area">
           <!-- List Area -->
-          <div>
-              <!-- Controls -->
+          <div class="List-Controls">
+            <button onclick="setListViewMode('name')">Sort By Name</button>
+            <button onclick="setListViewMode('age')">Sort By Age</button>
           </div>
-          <div class="List-Content">
-
-          </div>
+          <div class="List-Content" viewMode="default"></div>
         </section>
       </div>
     </div>
+    <script src="/scripts/utils.js"></script>
     <script src="/scripts/List.js"></script>
     <script src="/scripts/Person.js"></script>
     <script src="/scripts/index.js"></script>
