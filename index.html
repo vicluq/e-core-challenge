@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/form.css">
-    <link rel="stylesheet" href="/css/list.css">
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/form.css" />
+    <link rel="stylesheet" href="/css/list.css" />
     <title>E-Core Challenge</title>
   </head>
   <body>
@@ -20,29 +20,36 @@
           <form id="person-form">
             <fieldset>
               <legend>Person Information</legend>
-              <p class="form-section-row1 name-input">
-                <label for="person-name">Name</label>
-                <input type="text" name="name" id="person-name" />
-              </p>
-              <p class="form-section-row1 age-input">
-                <label for="person-age">Age</label>
-                <input
-                  type="number"
-                  value="0"
-                  aria-valuemin="0"
-                  name="age"
-                  id="person-age"
-                />
-              </p>
+              <div class="form-section-row1 name-input">
+                <p>
+                  <label for="person-name">Name</label>
+                  <input type="text" name="name" id="person-name" />
+                </p>
+              </div>
+              <div class="form-section-row1 age-input">
+                <p>
+                  <label for="person-age">Age</label>
+                  <input
+                    type="number"
+                    value="0"
+                    aria-valuemin="0"
+                    name="age"
+                    id="person-age"
+                  />
+                </p>
+              </div>
             </fieldset>
-            <button type="submit">Submit Person</button>
+            <button type="submit">ADD PERSON</button>
           </form>
         </section>
         <section class="List-Area">
           <!-- List Area -->
           <div class="List-Controls">
-            <button onclick="setListViewMode('name')">Sort By Name</button>
-            <button onclick="setListViewMode('age')">Sort By Age</button>
+            <h2>Listing</h2>
+            <div class="Control-Buttons">
+              <button onclick="setListViewMode('name')">Sort By Name</button>
+              <button onclick="setListViewMode('age')">Sort By Age</button>
+            </div>
           </div>
           <div class="List-Content" viewMode="default"></div>
         </section>

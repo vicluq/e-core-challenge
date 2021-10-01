@@ -6,7 +6,13 @@ const listContentDiv = document.querySelector(".List-Content");
 const form = document.getElementById("person-form");
 
 const personList = new List([]);
-
+personList.addPerson({ name: "Victor", age: 19 });
+personList.addPerson({ name: "Victor", age: 44 });
+personList.addPerson({ name: "Victor", age: 19 });
+personList.addPerson({ name: "Victor", age: 22 });
+personList.addPerson({ name: "Victor", age: 19 });
+personList.addPerson({ name: "Victor", age: 24 });
+personList.addPerson({ name: "Victor", age: 6 });
 // function sendFormWarning() {}
 
 form.addEventListener("submit", (event) => {
@@ -21,26 +27,30 @@ form.addEventListener("submit", (event) => {
   const { nameError, ageError } = addPersonDB(data);
 
   if (nameError) {
-    document.querySelector(
-      ".name-input"
-    ).innerHTML += `<p class="error-message name-error">${nameError}</p>`;
+    if (!document.querySelector(".error-message.name-error")) {
+      document.querySelector(
+        ".name-input"
+      ).innerHTML += `<p class="error-message name-error">${nameError}</p>`;
+    }
   } else {
     const errorMessage = document.querySelector(".error-message.name-error");
-    document.querySelector("input#person-name").value = "";
+    if (!ageError) document.querySelector("input#person-name").value = "";
     if (errorMessage) {
       document.querySelector(".name-input").removeChild(errorMessage);
     }
   }
 
   if (ageError) {
-    document.querySelector(
-      ".age-input"
-    ).innerHTML += `<p class="error-message age-error">${ageError}</p>`;
+    if (!document.querySelector(".error-message.age-error")) {
+      document.querySelector(
+        ".age-input"
+      ).innerHTML += `<p class="error-message age-error">${ageError}</p>`;
+    }
   } else {
     const errorMessage = document.querySelector(".error-message.age-error");
-    document.querySelector("input#person-age").value = "0";
+    if (!nameError) document.querySelector("input#person-age").value = "0";
     if (errorMessage) {
-      document.querySelector(".name-input").removeChild(errorMessage);
+      document.querySelector(".age-input").removeChild(errorMessage);
     }
   }
 
@@ -50,11 +60,17 @@ form.addEventListener("submit", (event) => {
 function getPersonItemHTML(personData, index) {
   return `
     <div class="List-Item">
-        <p class="Item-Id">Id: ${personData.getId}</p>
-        <p class="Item-Name">Name: ${personData.getName}</p>
-        <p class="Item-Age">Age: ${personData.getAge}</p>
-        <p class="Item-Class">Classification: ${personData.getClassification}</p>
-        <button onclick="deletePerson(${personData.getId})">x</button>
+      <div class="Content">
+        <div class="Person-Data">
+          <p class="Item-Id">Id: ${personData.getId}</p>
+          <p class="Item-Name">Name: ${personData.getName}</p>
+          <p class="Item-Age">Age: ${personData.getAge}</p>
+          <p class="Item-Class">Group: ${personData.getClassification}</p>
+        </div>
+        <div class="Delete-Person">
+          <button onclick="deletePerson(${personData.getId})">remove</button>
+        </div>
+      </div>
     </div>
     `;
 }
