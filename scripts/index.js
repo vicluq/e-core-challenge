@@ -6,15 +6,13 @@ const listContentDiv = document.querySelector(".List-Content");
 const form = document.getElementById("person-form");
 
 const personList = new List([]);
-personList.addPerson({ name: "Victor", age: 19 });
-personList.addPerson({ name: "Victor", age: 44 });
-personList.addPerson({ name: "Victor", age: 19 });
-personList.addPerson({ name: "Victor", age: 22 });
-personList.addPerson({ name: "Victor", age: 19 });
-personList.addPerson({ name: "Victor", age: 24 });
-personList.addPerson({ name: "Victor", age: 6 });
-// function sendFormWarning() {}
+personList.addPerson({ name: "Victor", age: 29 });
+personList.addPerson({ name: "Gustavo", age: 19 });
+personList.addPerson({ name: "Victoria", age: 19 });
+personList.addPerson({ name: "Heitor", age: 13 });
+personList.addPerson({ name: "Juliana", age: 9 });
 
+// function sendFormWarning() {}
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
