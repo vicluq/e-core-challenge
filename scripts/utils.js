@@ -4,14 +4,14 @@ function validateName(name) {
 
   if (!name && !name.trim()) {
     isValid = false;
-    error = "Cannot add an empty name or only whitespaces!";
+    error = "Cannot add an empty name, only whitespaces or special characters!";
   } else if (
     name.match(/[0-9]+/) ||
     name.match(/[`!@#$%^&*()_+\=\[\]{};':"\\|,.<>\/?~]/)
   ) {
     // only allow '-' for compound names
     isValid = false;
-    error = "The name cannot contain numbers or special characters!";
+    error = "Cannot add an empty name, only whitespaces or special characters!";
   }
 
   return {
